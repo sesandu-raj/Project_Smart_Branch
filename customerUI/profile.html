@@ -71,7 +71,7 @@
         </nav>
         <button
           onclick="logout()"
-          class="bg-slate-100 text-slate-900 px-6 py-2 rounded-xl font-bold text-xs"
+          class="bg-slate-100 text-slate-900 px-6 py-2 rounded-xl font-bold text-xs hover:bg-slate-200 transition-all"
         >
           Logout
         </button>
@@ -171,7 +171,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
     <script>
-      // 1. Paste your Firebase Config here (same as app.js)
       const firebaseConfig = {
         apiKey: "AIzaSyBQSGl_cGg_RBqIbIep_cWZMXD_yh8uDSo",
         authDomain: "smart-branch-fd1d8.firebaseapp.com",
@@ -185,9 +184,9 @@
       const db = firebase.firestore();
 
       async function loadProfile() {
-        const userId = localStorage.getItem("userID"); // Ensure login saves this
+        const userId = localStorage.getItem("userID");
         if (!userId) {
-          window.location.href = "../index.html";
+          window.location.href = "index.html";
           return;
         }
 
@@ -214,65 +213,96 @@
             .where("User_ID", "==", userId)
             .get();
           const accCont = document.getElementById("accounts-container");
-          accCont.innerHTML = "";
+          accCont.innerHTML = accountsSnap.empty
+            ? '<p class="text-slate-400 italic">No accounts linked...</p>'
+            : "";
 
           accountsSnap.forEach((doc) => {
             const acc = doc.data();
             accCont.innerHTML += `
-                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-                        <div class="flex justify-between items-start mb-6">
-                            <span class="material-symbols-outlined text-emerald-600">account_balance_wallet</span>
-                            <span class="bg-slate-100 text-[10px] font-bold px-2 py-1 rounded uppercase">${acc.account_type}</span>
-                        </div>
-                        <p class="text-slate-400 text-xs">Branch: ${acc.Branch_Code}</p>
-                        <p class="text-2xl font-headline font-extrabold mt-1">Rs. ${parseFloat(acc.Amount).toLocaleString()}</p>
-                    </div>
-                `;
+              <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                  <div class="flex justify-between items-start mb-6">
+                      <span class="material-symbols-outlined text-emerald-600">account_balance_wallet</span>
+                      <span class="bg-slate-100 text-[10px] font-bold px-2 py-1 rounded uppercase">${acc.account_type}</span>
+                  </div>
+                  <p class="text-slate-400 text-xs">Branch: ${acc.Branch_Code}</p>
+                  <p class="text-2xl font-headline font-extrabold mt-1">Rs. ${parseFloat(acc.Amount).toLocaleString()}</p>
+              </div>`;
           });
 
-          // 3. Fetch Appointments
+          // 3. Fetch Appointments (Added Delete Button Logic)
           const apptSnap = await db
             .collection("Appointments")
             .where("User_ID", "==", userId)
             .get();
           const apptCont = document.getElementById("appointments-container");
-          apptCont.innerHTML = "";
+          apptCont.innerHTML = apptSnap.empty
+            ? '<p class="text-slate-400 italic">No upcoming appointments...</p>'
+            : "";
 
           apptSnap.forEach((doc) => {
             const appt = doc.data();
-            const date = new Date(appt.Time_Slot).toLocaleDateString("en-US", {
+            const docId = doc.id; // Unique Firestore ID for deletion
+            const dateObj = new Date(appt.Time_Slot);
+            const date = dateObj.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
             });
-            const time = new Date(appt.Time_Slot).toLocaleTimeString("en-US", {
+            const time = dateObj.toLocaleTimeString("en-US", {
               hour: "2-digit",
               minute: "2-digit",
             });
 
             apptCont.innerHTML += `
-                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-50 flex flex-col items-center justify-center border border-slate-100">
-                            <span class="text-xl font-bold">${date}</span>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="font-bold">${appt.Service_Type}</h4>
-                            <div class="flex gap-4 mt-1 text-sm text-slate-400">
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> ${time}</span>
-                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Branch ${appt.Branch_Code}</span>
-                            </div>
-                        </div>
-                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full uppercase">${appt.Status}</span>
-                    </div>
-                `;
+              <div class="flex flex-col md:flex-row md:items-center justify-between p-6 bg-white rounded-3xl border border-slate-100 shadow-sm group transition-all hover:border-slate-200">
+                  <div class="flex items-center gap-6">
+                      <div class="w-16 h-16 rounded-2xl bg-slate-50 flex flex-col items-center justify-center border border-slate-100">
+                          <span class="text-xl font-bold">${date}</span>
+                      </div>
+                      <div class="flex-1">
+                          <h4 class="font-bold text-lg">${appt.Service_Type}</h4>
+                          <div class="flex gap-4 mt-1 text-sm text-slate-400">
+                              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> ${time}</span>
+                              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Branch ${appt.Branch_Code}</span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="mt-4 md:mt-0 flex items-center gap-4">
+                      <span class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full uppercase border border-emerald-100">
+                        ${appt.Status}
+                      </span>
+                      <button onclick="cancelAppointment('${docId}')" class="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all" title="Cancel Appointment">
+                          <span class="material-symbols-outlined">delete</span>
+                      </button>
+                  </div>
+              </div>`;
           });
         } catch (error) {
           console.error("Error loading profile:", error);
         }
       }
 
+      // NEW FEATURE: Delete function
+      async function cancelAppointment(docId) {
+        if (
+          confirm(
+            "Are you sure you want to cancel this appointment? It will be permanently removed from our records.",
+          )
+        ) {
+          try {
+            await db.collection("Appointments").doc(docId).delete();
+            // Reload the view
+            loadProfile();
+          } catch (error) {
+            console.error("Error deleting appointment:", error);
+            alert("Could not cancel appointment. Please try again.");
+          }
+        }
+      }
+
       function logout() {
         localStorage.clear();
-        window.location.href = "../customerUI/index.html";
+        window.location.href = "index.html";
       }
 
       window.onload = loadProfile;
