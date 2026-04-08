@@ -1,0 +1,281 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Profile | The Sovereign Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "on-tertiary-container": "#009668",
+              surface: "#faf8ff",
+            },
+            fontFamily: { headline: ["Manrope"], body: ["Inter"] },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body text-on-surface antialiased">
+    <header
+      class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+    >
+      <div
+        class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="text-xl font-bold tracking-tighter text-slate-900 font-headline"
+        >
+          The Sovereign Path
+        </div>
+        <nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm"
+        >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="services.html"
+            >Services</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="branches.html"
+            >Branches</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="rates.html"
+            >Rates</a
+          >
+          <a
+            class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+            href="profile.html"
+            >My Profile</a
+          >
+        </nav>
+        <button
+          onclick="logout()"
+          class="bg-slate-100 text-slate-900 px-6 py-2 rounded-xl font-bold text-xs"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto space-y-12">
+      <header>
+        <h1 class="text-5xl font-headline font-extrabold tracking-tighter">
+          My Profile
+        </h1>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <section
+          class="lg:col-span-4 bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-50"
+        >
+          <div class="flex flex-col items-center text-center space-y-4">
+            <div
+              class="w-32 h-32 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 text-4xl font-bold"
+              id="avatar-initial"
+            >
+              H
+            </div>
+            <h2 class="text-2xl font-headline font-bold" id="display-name">
+              Loading...
+            </h2>
+            <p
+              class="text-slate-400 text-sm font-bold uppercase tracking-widest"
+              id="display-userid"
+            >
+              ---
+            </p>
+          </div>
+
+          <div class="mt-10 space-y-6">
+            <div>
+              <label class="text-[10px] uppercase font-bold text-slate-400"
+                >ID Number (NIC)</label
+              >
+              <p
+                class="font-medium py-2 border-b border-slate-100"
+                id="info-nic"
+              >
+                ---
+              </p>
+            </div>
+            <div>
+              <label class="text-[10px] uppercase font-bold text-slate-400"
+                >Email Address</label
+              >
+              <p
+                class="font-medium py-2 border-b border-slate-100"
+                id="info-email"
+              >
+                ---
+              </p>
+            </div>
+            <div>
+              <label class="text-[10px] uppercase font-bold text-slate-400"
+                >Town</label
+              >
+              <p
+                class="font-medium py-2 border-b border-slate-100"
+                id="info-town"
+              >
+                ---
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div class="lg:col-span-8 space-y-12">
+          <section class="space-y-6">
+            <h3 class="text-xl font-headline font-bold">Portfolio Summary</h3>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 gap-4"
+              id="accounts-container"
+            >
+              <p class="text-slate-400 italic">No accounts linked...</p>
+            </div>
+          </section>
+
+          <section class="space-y-6">
+            <h3 class="text-xl font-headline font-bold">
+              Appointment Schedule
+            </h3>
+            <div class="space-y-4" id="appointments-container">
+              <p class="text-slate-400 italic">No upcoming appointments...</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      // 1. Paste your Firebase Config here (same as app.js)
+      const firebaseConfig = {
+        apiKey: "AIzaSyBQSGl_cGg_RBqIbIep_cWZMXD_yh8uDSo",
+        authDomain: "smart-branch-fd1d8.firebaseapp.com",
+        projectId: "smart-branch-fd1d8",
+        storageBucket: "smart-branch-fd1d8.firebasestorage.app",
+        messagingSenderId: "958934015523",
+        appId: "1:958934015523:web:2b0e69e0a65738bb809b96",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      async function loadProfile() {
+        const userId = localStorage.getItem("userID"); // Ensure login saves this
+        if (!userId) {
+          window.location.href = "../index.html";
+          return;
+        }
+
+        try {
+          // 1. Fetch User Details
+          const userQuery = await db
+            .collection("Users")
+            .where("User_ID", "==", userId)
+            .get();
+          if (!userQuery.empty) {
+            const data = userQuery.docs[0].data();
+            document.getElementById("display-name").innerText = data.Name;
+            document.getElementById("display-userid").innerText = data.User_ID;
+            document.getElementById("info-nic").innerText = data.NIC;
+            document.getElementById("info-email").innerText = data.Email;
+            document.getElementById("info-town").innerText = data.Town;
+            document.getElementById("avatar-initial").innerText =
+              data.Name.charAt(0);
+          }
+
+          // 2. Fetch Accounts
+          const accountsSnap = await db
+            .collection("Accounts")
+            .where("User_ID", "==", userId)
+            .get();
+          const accCont = document.getElementById("accounts-container");
+          accCont.innerHTML = "";
+
+          accountsSnap.forEach((doc) => {
+            const acc = doc.data();
+            accCont.innerHTML += `
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-emerald-600">account_balance_wallet</span>
+                            <span class="bg-slate-100 text-[10px] font-bold px-2 py-1 rounded uppercase">${acc.account_type}</span>
+                        </div>
+                        <p class="text-slate-400 text-xs">Branch: ${acc.Branch_Code}</p>
+                        <p class="text-2xl font-headline font-extrabold mt-1">Rs. ${parseFloat(acc.Amount).toLocaleString()}</p>
+                    </div>
+                `;
+          });
+
+          // 3. Fetch Appointments
+          const apptSnap = await db
+            .collection("Appointments")
+            .where("User_ID", "==", userId)
+            .get();
+          const apptCont = document.getElementById("appointments-container");
+          apptCont.innerHTML = "";
+
+          apptSnap.forEach((doc) => {
+            const appt = doc.data();
+            const date = new Date(appt.Time_Slot).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            });
+            const time = new Date(appt.Time_Slot).toLocaleTimeString("en-US", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+
+            apptCont.innerHTML += `
+                    <div class="flex items-center gap-6 p-6 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                        <div class="w-16 h-16 rounded-2xl bg-slate-50 flex flex-col items-center justify-center border border-slate-100">
+                            <span class="text-xl font-bold">${date}</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-bold">${appt.Service_Type}</h4>
+                            <div class="flex gap-4 mt-1 text-sm text-slate-400">
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">schedule</span> ${time}</span>
+                                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Branch ${appt.Branch_Code}</span>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-[10px] font-bold rounded-full uppercase">${appt.Status}</span>
+                    </div>
+                `;
+          });
+        } catch (error) {
+          console.error("Error loading profile:", error);
+        }
+      }
+
+      function logout() {
+        localStorage.clear();
+        window.location.href = "../customerUI/index.html";
+      }
+
+      window.onload = loadProfile;
+    </script>
+  </body>
+</html>

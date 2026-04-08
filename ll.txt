@@ -1,0 +1,29 @@
+<nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm"
+        >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="services.html"
+            >Services</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="branches.html"
+            >Branches</a
+          >
+          <a
+            class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+            href="rates.html"
+            >Rates</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="profile.html"
+            >My Profile</a
+          >
+        </nav>

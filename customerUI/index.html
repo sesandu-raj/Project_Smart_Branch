@@ -1,94 +1,238 @@
 <!doctype html>
-<html lang="en">
+<html class="light" lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Smart Branch - Customer Portal</title>
-    <link rel="icon" href="data:," />
-    <link rel="apple-touch-icon" href="data:," />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Sovereign Path | Banking Portal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "on-tertiary-container": "#009668",
+              "surface-container-low": "#f2f3ff",
+              surface: "#faf8ff",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+      }
+    </style>
   </head>
-  <body>
-    <div id="login-view" class="container">
-      <div class="login-card">
-        <h1>Smart Branch Login</h1>
-        <p>(Credentials are given by the bank)</p>
-        <input type="text" id="login-id" placeholder="User ID / NIC" />
-        <input type="password" id="login-pass" placeholder="Password" />
-        <button id="btn-login">Login</button>
-        <button id="btn-demo" class="secondary-btn">Show Demo Homepage</button>
-      </div>
+  <body class="bg-surface font-body text-slate-900 antialiased min-h-screen">
+    <div
+      id="login-view"
+      class="flex items-center justify-center min-h-screen relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50 opacity-80"
+      ></div>
+      <main class="relative z-10 w-full max-w-md px-6 py-12">
+        <div class="text-center mb-10">
+          <div
+            class="inline-flex items-center justify-center p-3 mb-6 bg-black rounded-xl shadow-lg"
+          >
+            <span class="material-symbols-outlined text-white text-3xl"
+              >account_balance</span
+            >
+          </div>
+          <h1 class="font-headline text-3xl font-bold tracking-tighter mb-2">
+            The Sovereign Path
+          </h1>
+          <p class="text-slate-500 font-medium">
+            Private Wealth Appointment Portal
+          </p>
+        </div>
+        <div
+          class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-2xl border border-white/40"
+        >
+          <div class="mb-8">
+            <h2 class="font-headline text-xl font-semibold mb-1">
+              Welcome back
+            </h2>
+            <p class="text-slate-500 text-sm">
+              Enter credentials provided by the bank.
+            </p>
+          </div>
+          <div class="space-y-6">
+            <div class="space-y-2">
+              <label
+                class="text-xs font-bold uppercase tracking-widest text-slate-500 px-1"
+                >User ID / NIC</label
+              >
+              <input
+                type="text"
+                id="login-id"
+                class="block w-full px-4 py-3.5 bg-white border-0 border-b-2 border-slate-200 focus:border-emerald-500 focus:ring-0 transition-all"
+                placeholder="e.g. 123456789V"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="text-xs font-bold uppercase tracking-widest text-slate-500 px-1"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="login-pass"
+                class="block w-full px-4 py-3.5 bg-white border-0 border-b-2 border-slate-200 focus:border-emerald-500 focus:ring-0 transition-all"
+                placeholder="••••••••"
+              />
+            </div>
+            <button
+              id="btn-login"
+              class="w-full flex items-center justify-center py-4 bg-black text-white font-headline font-bold rounded-xl shadow-lg hover:scale-[1.02] transition-all"
+            >
+              Sign In
+              <span class="material-symbols-outlined ml-2">arrow_forward</span>
+            </button>
+            <button
+              id="btn-demo"
+              class="w-full py-3 text-slate-600 font-semibold text-sm hover:underline"
+            >
+              Show Demo Homepage
+            </button>
+          </div>
+        </div>
+      </main>
     </div>
 
     <div id="main-view" class="hidden">
-      <nav class="navbar">
-        <div class="logo">Smart Branch</div>
-        <ul class="nav-links">
-          <li>Home</li>
-          <li>Services</li>
-          <li>Availability Branches</li>
-          <li>Rates</li>
-          <li>My Profile</li>
-        </ul>
-      </nav>
+      <header
+        class="bg-white/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-slate-100"
+      >
+        <div
+          class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto"
+        >
+          <div
+            class="text-xl font-bold tracking-tighter font-headline text-slate-900"
+          >
+            The Sovereign Path
+          </div>
 
-      <header class="welcome-banner">
-        <h1 id="welcome-msg">Welcome Message + Name</h1>
-        <p>Vision + Mission</p>
+          <nav class="flex items-center space-x-8 font-semibold text-sm">
+            <a
+              class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+              href="index.html"
+              >Home</a
+            >
+            <a
+              class="text-slate-500 hover:text-black transition-all"
+              href="services.html"
+              >Services</a
+            >
+            <a
+              class="text-slate-500 hover:text-black transition-all"
+              href="branches.html"
+              >Branches</a
+            >
+            <a
+              class="text-slate-500 hover:text-black transition-all"
+              href="rates.html"
+              >Rates</a
+            >
+            <a
+              class="text-slate-500 hover:text-black transition-all"
+              href="profile.html"
+              >My Profile</a
+            >
+          </nav>
+
+          <div class="flex items-center space-x-6">
+            <button
+              class="bg-black text-white px-6 py-2.5 rounded-xl font-headline font-semibold text-sm hover:opacity-80 transition-all active:scale-95"
+            >
+              Book Appointment
+            </button>
+          </div>
+        </div>
       </header>
 
-      <div class="content-wrapper">
-        <section id="branches">
-          <h2>Branches</h2>
-          <p>Show All Branches of the bank as Tiles.</p>
-          <div id="branch-grid" class="tile-grid"></div>
+      <main class="pt-24 pb-20">
+        <section class="max-w-screen-2xl mx-auto px-8 py-16">
+          <h1
+            id="welcome-msg"
+            class="text-6xl font-headline font-extrabold tracking-tight leading-tight mb-4"
+          >
+            Welcome back, <br /><span class="text-emerald-600"
+              >Alexander Thorne</span
+            >
+          </h1>
+          <p class="text-slate-500 text-xl max-w-xl">
+            Your financial sanctuary awaits. Manage your sessions or explore
+            bespoke solutions.
+          </p>
         </section>
 
-        <section id="services">
-          <h2>Services</h2>
-          <ul class="service-list" id="service-list">
-            <li>Savings Account Opening</li>
-            <li>Current Account Opening</li>
-            <li>Personal Loan</li>
-            <li>Housing Loan</li>
-            <li>Pawning (Gold Loan)</li>
-            <li>Fixed Deposit</li>
-            <li>Debit Card Issue</li>
-            <li>Internet Banking Activation</li>
-          </ul>
-        </section>
+        <div
+          class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-3 gap-8"
+        >
+          <section id="branches-sec" class="lg:col-span-2">
+            <h2 class="text-2xl font-headline font-bold mb-6">
+              Available Branches
+            </h2>
+            <div
+              id="branch-grid"
+              class="grid grid-cols-1 md:grid-cols-2 gap-4"
+            ></div>
+          </section>
 
-        <section id="rates">
-          <h2>Rates</h2>
-          <div class="rate-box">
-            <p>dollar ⇄ LKR</p>
-            <p>Gold Rate</p>
+          <aside class="space-y-6">
+            <div
+              class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100"
+            >
+              <h3 class="font-headline font-bold text-lg mb-4">
+                Personal Details
+              </h3>
+              <div
+                id="profile-info"
+                class="space-y-2 text-sm text-slate-600"
+              ></div>
+            </div>
+            <div class="bg-black text-white p-8 rounded-[2rem] shadow-lg">
+              <h3 class="font-headline font-bold text-lg mb-4 text-emerald-400">
+                Account Balances
+              </h3>
+              <div id="account-balances" class="space-y-4"></div>
+            </div>
+          </aside>
+        </div>
+
+        <section
+          id="appointments-sec"
+          class="max-w-screen-2xl mx-auto px-8 mt-12"
+        >
+          <div class="bg-slate-50 p-10 rounded-[2rem] border border-slate-200">
+            <h2 class="text-2xl font-headline font-bold mb-6">
+              My Appointments
+            </h2>
+            <div
+              id="appointment-status"
+              class="grid grid-cols-1 md:grid-cols-2 gap-6"
+            ></div>
           </div>
         </section>
-
-        <section id="my-profile">
-          <h2>My Profile</h2>
-
-          <div class="profile-sec" id="sec-1">
-            <h3>Sec #1: Personal Info</h3>
-            <p>Avatar + Name + ID Number + Birthday</p>
-            <div id="profile-info"></div>
-          </div>
-
-          <div class="profile-sec" id="sec-2">
-            <h3>Sec #2: Accounts</h3>
-            <p>Categorise Account according to the ID and show balance.</p>
-            <div id="account-balances"></div>
-          </div>
-
-          <div class="profile-sec" id="sec-3">
-            <h3>Sec #3: My Appointments</h3>
-            <p>Required Document show: status (Submitted, Accepted, resub)</p>
-            <p>Reserved Time Slot and Branch.</p>
-            <div id="appointment-status"></div>
-          </div>
-        </section>
-      </div>
+      </main>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
