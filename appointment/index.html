@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Make Appointment</title>
+    <link rel="stylesheet" href="../customerUI/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="login-card">
+        <h1>Book Appointment</h1>
+
+        <input type="text" id="service-type" readonly />
+        <input type="text" id="branch-code" placeholder="Branch Code" />
+        <input type="text" id="documents" placeholder="Required Documents" />
+        <input type="datetime-local" id="time-slot" />
+
+        <button id="btn-book">Confirm Appointment</button>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="appointment.js"></script>
+  </body>
+</html>

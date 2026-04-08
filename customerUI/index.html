@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Branch - Customer Portal</title>
+    <link rel="icon" href="data:," />
+    <link rel="apple-touch-icon" href="data:," />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="login-view" class="container">
+      <div class="login-card">
+        <h1>Smart Branch Login</h1>
+        <p>(Credentials are given by the bank)</p>
+        <input type="text" id="login-id" placeholder="User ID / NIC" />
+        <input type="password" id="login-pass" placeholder="Password" />
+        <button id="btn-login">Login</button>
+        <button id="btn-demo" class="secondary-btn">Show Demo Homepage</button>
+      </div>
+    </div>
+
+    <div id="main-view" class="hidden">
+      <nav class="navbar">
+        <div class="logo">Smart Branch</div>
+        <ul class="nav-links">
+          <li>Home</li>
+          <li>Services</li>
+          <li>Availability Branches</li>
+          <li>Rates</li>
+          <li>My Profile</li>
+        </ul>
+      </nav>
+
+      <header class="welcome-banner">
+        <h1 id="welcome-msg">Welcome Message + Name</h1>
+        <p>Vision + Mission</p>
+      </header>
+
+      <div class="content-wrapper">
+        <section id="branches">
+          <h2>Branches</h2>
+          <p>Show All Branches of the bank as Tiles.</p>
+          <div id="branch-grid" class="tile-grid"></div>
+        </section>
+
+        <section id="services">
+          <h2>Services</h2>
+          <ul class="service-list" id="service-list">
+            <li>Savings Account Opening</li>
+            <li>Current Account Opening</li>
+            <li>Personal Loan</li>
+            <li>Housing Loan</li>
+            <li>Pawning (Gold Loan)</li>
+            <li>Fixed Deposit</li>
+            <li>Debit Card Issue</li>
+            <li>Internet Banking Activation</li>
+          </ul>
+        </section>
+
+        <section id="rates">
+          <h2>Rates</h2>
+          <div class="rate-box">
+            <p>dollar ⇄ LKR</p>
+            <p>Gold Rate</p>
+          </div>
+        </section>
+
+        <section id="my-profile">
+          <h2>My Profile</h2>
+
+          <div class="profile-sec" id="sec-1">
+            <h3>Sec #1: Personal Info</h3>
+            <p>Avatar + Name + ID Number + Birthday</p>
+            <div id="profile-info"></div>
+          </div>
+
+          <div class="profile-sec" id="sec-2">
+            <h3>Sec #2: Accounts</h3>
+            <p>Categorise Account according to the ID and show balance.</p>
+            <div id="account-balances"></div>
+          </div>
+
+          <div class="profile-sec" id="sec-3">
+            <h3>Sec #3: My Appointments</h3>
+            <p>Required Document show: status (Submitted, Accepted, resub)</p>
+            <p>Reserved Time Slot and Branch.</p>
+            <div id="appointment-status"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
