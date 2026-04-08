@@ -4,6 +4,38 @@
     <meta charset="UTF-8" />
     <title>Make Appointment</title>
     <link rel="stylesheet" href="../customerUI/style.css" />
+    <style>
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #111 !important;
+        -webkit-text-fill-color: #111 !important;
+        caret-color: #111;
+        border: 1px solid var(--card-border);
+      }
+      input::placeholder {
+        color: rgba(20, 20, 20, 0.8) !important;
+      }
+      input::-webkit-input-placeholder {
+        color: rgba(20, 20, 20, 0.8) !important;
+      }
+      input::-moz-placeholder {
+        color: rgba(20, 20, 20, 0.8) !important;
+      }
+      input:-ms-input-placeholder {
+        color: rgba(20, 20, 20, 0.8) !important;
+      }
+      input:-moz-placeholder {
+        color: rgba(20, 20, 20, 0.8) !important;
+      }
+      select {
+        background: #ffffff;
+      }
+    </style>
   </head>
 
   <body>
@@ -12,7 +44,9 @@
         <h1>Book Appointment</h1>
 
         <input type="text" id="service-type" readonly />
-        <input type="text" id="branch-code" placeholder="Branch Code" />
+        <select id="branch-code">
+          <option value="">Select Branch</option>
+        </select>
         <input type="text" id="documents" placeholder="Required Documents" />
         <input type="datetime-local" id="time-slot" />
 
