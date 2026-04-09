@@ -1,0 +1,263 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Sovereign Path | Entrance</title>
+    <!-- Fonts: Manrope & Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-primary-fixed": "#131b2e",
+              "on-background": "#131b2e",
+              "surface-variant": "#dae2fd",
+              "primary-fixed": "#dae2fd",
+              "on-secondary-fixed": "#0b1c30",
+              "outline-variant": "#c6c6cd",
+              "secondary-container": "#d0e1fb",
+              tertiary: "#000000",
+              "on-tertiary-container": "#009668",
+              "surface-dim": "#d2d9f4",
+              "primary-container": "#131b2e",
+              surface: "#faf8ff",
+              "error-container": "#ffdad6",
+              "on-secondary": "#ffffff",
+              "on-surface-variant": "#45464d",
+              "on-tertiary-fixed-variant": "#005236",
+              "on-primary-fixed-variant": "#3f465c",
+              "inverse-surface": "#283044",
+              "surface-tint": "#565e74",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#38485d",
+              "tertiary-fixed": "#6ffbbe",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#b7c8e1",
+              "surface-container-high": "#e2e7ff",
+              secondary: "#505f76",
+              primary: "#000000",
+              "on-tertiary": "#ffffff",
+              "on-secondary-container": "#54647a",
+              "tertiary-container": "#002113",
+              "on-tertiary-fixed": "#002113",
+              "on-error": "#ffffff",
+              error: "#ba1a1a",
+              outline: "#76777d",
+              "surface-container-highest": "#dae2fd",
+              "surface-container": "#eaedff",
+              "inverse-primary": "#bec6e0",
+              "on-primary-container": "#7c839b",
+              "tertiary-fixed-dim": "#4edea3",
+              background: "#faf8ff",
+              "primary-fixed-dim": "#bec6e0",
+              "surface-container-low": "#f2f3ff",
+              "on-surface": "#131b2e",
+              "secondary-fixed": "#d3e4fe",
+              "on-primary": "#ffffff",
+              "surface-bright": "#faf8ff",
+              "inverse-on-surface": "#eef0ff",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-manrope {
+        font-family: "Manrope", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center selection:bg-tertiary-fixed-dim selection:text-tertiary-container"
+  >
+    <!-- Subtle Architectural Background Element -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden -z-10">
+      <div
+        class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-surface-container-high rounded-full blur-[120px] opacity-40"
+      ></div>
+      <div
+        class="absolute -bottom-[5%] -right-[5%] w-[30%] h-[30%] bg-tertiary-fixed-dim/20 rounded-full blur-[100px] opacity-30"
+      ></div>
+    </div>
+    <!-- Main Navigation Header (Shared Component Mapping) -->
+    <header
+      class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl flex justify-between items-center px-8 py-4 w-full max-w-7xl mx-auto"
+    >
+      <div class="text-xl font-bold tracking-tight text-slate-900 font-manrope">
+        The Sovereign Path
+      </div>
+      <div class="flex gap-4">
+        <span
+          class="material-symbols-outlined text-slate-900"
+          data-icon="shield"
+          >shield</span
+        >
+      </div>
+    </header>
+    <!-- Content Canvas -->
+    <main class="w-full max-w-6xl px-6 py-12 flex flex-col items-center gap-12">
+      <!-- Identity Section -->
+      <div class="text-center space-y-4 mb-4">
+        <p
+          class="font-label text-on-tertiary-container tracking-[0.2em] uppercase text-xs font-semibold"
+        >
+          Architectural Private Wealth
+        </p>
+        <h1
+          class="font-manrope text-5xl md:text-6xl font-extrabold text-on-primary-fixed tracking-tight"
+        >
+          Access the Sanctuary.
+        </h1>
+        <p class="text-secondary max-w-lg mx-auto text-lg leading-relaxed">
+          Select your gateway to proceed into the Sovereign Path ecosystem.
+        </p>
+      </div>
+      <!-- Portal Selection Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
+        <!-- Staff Portal Tile -->
+        <button
+          onclick="window.location.href = './StaffUI/index.html'"
+          class="group relative flex flex-col items-center justify-center p-12 bg-surface-container-lowest rounded-xl shadow-[0_32px_48px_-4px_rgba(19,27,46,0.06)] hover:bg-surface-bright transition-all duration-300 transform hover:-translate-y-2 text-center border-b-2 border-transparent hover:border-on-primary-fixed"
+        >
+          <div
+            class="mb-8 w-20 h-20 flex items-center justify-center rounded-full bg-surface-container-low group-hover:bg-primary-fixed transition-colors duration-300"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-on-primary-container group-hover:text-primary"
+              data-icon="admin_panel_settings"
+              >admin_panel_settings</span
+            >
+          </div>
+          <h2 class="font-manrope text-2xl font-bold text-primary mb-3">
+            Staff Portal
+          </h2>
+          <p class="text-secondary font-body leading-relaxed">
+            Internal systems and branch management
+          </p>
+          <div
+            class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-on-tertiary-container font-semibold text-sm"
+          >
+            Enter System
+            <span
+              class="material-symbols-outlined text-base"
+              data-icon="arrow_forward"
+              >arrow_forward</span
+            >
+          </div>
+        </button>
+        <!-- Client Portal Tile -->
+        <button
+          onclick="window.location.href = './customerUI/index.html'"
+          class="group relative flex flex-col items-center justify-center p-12 bg-surface-container-lowest rounded-xl shadow-[0_32px_48px_-4px_rgba(19,27,46,0.06)] hover:bg-surface-bright transition-all duration-300 transform hover:-translate-y-2 text-center border-b-2 border-transparent hover:border-tertiary-fixed-dim"
+        >
+          <div
+            class="mb-8 w-20 h-20 flex items-center justify-center rounded-full bg-surface-container-low group-hover:bg-tertiary-fixed transition-colors duration-300"
+          >
+            <span
+              class="material-symbols-outlined text-4xl text-on-primary-container group-hover:text-on-tertiary-container"
+              data-icon="account_balance"
+              >account_balance</span
+            >
+          </div>
+          <h2 class="font-manrope text-2xl font-bold text-primary mb-3">
+            Client Portal
+          </h2>
+          <p class="text-secondary font-body leading-relaxed">
+            Personal banking and appointment booking
+          </p>
+          <div
+            class="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 text-on-tertiary-container font-semibold text-sm"
+          >
+            Secure Login
+            <span
+              class="material-symbols-outlined text-base"
+              data-icon="arrow_forward"
+              >arrow_forward</span
+            >
+          </div>
+        </button>
+      </div>
+      <!-- Trusted Badge -->
+      <div class="flex items-center gap-6 mt-8 grayscale opacity-50">
+        <span
+          class="text-[10px] uppercase tracking-widest text-secondary font-semibold"
+          >Integrity Verified by</span
+        >
+        <span
+          class="material-symbols-outlined text-2xl"
+          data-icon="verified_user"
+          >verified_user</span
+        >
+        <span class="material-symbols-outlined text-2xl" data-icon="gpp_good"
+          >gpp_good</span
+        >
+        <span class="material-symbols-outlined text-2xl" data-icon="encrypted"
+          >encrypted</span
+        >
+      </div>
+    </main>
+    <!-- Footer (Shared Component Mapping) -->
+    <footer
+      class="w-full border-t border-slate-200/20 flex flex-col md:flex-row justify-between items-center px-8 py-12 w-full max-w-7xl mx-auto mt-auto"
+    >
+      <div class="font-inter text-xs tracking-wide uppercase text-slate-400">
+        © 2024 The Sovereign Path. Architectural Private Wealth Management.
+      </div>
+      <div class="flex gap-8 mt-6 md:mt-0">
+        <a
+          class="font-inter text-xs tracking-wide uppercase text-slate-400 hover:text-slate-900 transition-colors"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="font-inter text-xs tracking-wide uppercase text-slate-400 hover:text-slate-900 transition-colors"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="font-inter text-xs tracking-wide uppercase text-slate-400 hover:text-slate-900 transition-colors"
+          href="#"
+          >Security Disclosure</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>
