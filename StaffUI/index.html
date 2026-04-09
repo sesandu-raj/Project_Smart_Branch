@@ -1,0 +1,209 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Staff Portal | The Sovereign Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#4edea3",
+              "on-surface-variant": "#45464d",
+              "surface-variant": "#dae2fd",
+              "primary-fixed-dim": "#bec6e0",
+              "on-secondary-fixed": "#0b1c30",
+              "surface-container-low": "#f2f3ff",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#eef0ff",
+              secondary: "#505f76",
+              "on-tertiary-fixed": "#002113",
+              "outline-variant": "#c6c6cd",
+              error: "#ba1a1a",
+              "secondary-fixed-dim": "#b7c8e1",
+              surface: "#faf8ff",
+              "on-tertiary-fixed-variant": "#005236",
+              "surface-dim": "#d2d9f4",
+              outline: "#76777d",
+              "on-tertiary-container": "#009668",
+              "primary-container": "#131b2e",
+              "on-secondary-fixed-variant": "#38485d",
+              "surface-bright": "#faf8ff",
+              "inverse-primary": "#bec6e0",
+              "surface-container": "#eaedff",
+              background: "#faf8ff",
+              "surface-tint": "#565e74",
+              "secondary-fixed": "#d3e4fe",
+              "on-surface": "#131b2e",
+              "on-primary-fixed": "#131b2e",
+              "primary-fixed": "#dae2fd",
+              primary: "#000000",
+              tertiary: "#000000",
+              "tertiary-fixed": "#6ffbbe",
+              "on-primary-fixed-variant": "#3f465c",
+              "surface-container-highest": "#dae2fd",
+              "secondary-container": "#d0e1fb",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#54647a",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#283044",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              "on-background": "#131b2e",
+              "on-primary-container": "#7c839b",
+              "surface-container-high": "#e2e7ff",
+              "error-container": "#ffdad6",
+              "tertiary-container": "#002113",
+              "on-tertiary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+              label: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .font-manrope {
+        font-family: "Manrope", sans-serif;
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        background: rgba(250, 248, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface text-on-surface flex items-center justify-center min-h-screen"
+  >
+    <!-- Main Content Canvas -->
+    <main class="w-full max-w-6xl px-6 py-12">
+      <div class="mx-auto">
+        <!-- Simplified Minimalist Action Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Action 1: New Branch Registration -->
+          <a
+            class="group bg-surface-container-lowest p-12 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-slate-100 rounded-xl"
+            href="../branchReg/index.html"
+          >
+            <div
+              class="mb-6 h-20 w-20 flex items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 group-hover:scale-110 transition-transform duration-300"
+            >
+              <span
+                class="material-symbols-outlined text-5xl"
+                data-icon="account_balance"
+                >account_balance</span
+              >
+            </div>
+            <h3 class="text-3xl font-bold tracking-tight text-primary">
+              New Branch Registration
+            </h3>
+            <p class="text-secondary mt-4 max-w-xs">
+              Initialize physical or digital entities within the ecosystem.
+            </p>
+          </a>
+          <!-- Action 2: Client Registration -->
+          <a
+            class="group bg-surface-container-lowest p-12 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-slate-100 rounded-xl"
+            href="../userReg/index.html"
+          >
+            <div
+              class="mb-6 h-20 w-20 flex items-center justify-center rounded-2xl bg-slate-50 text-primary group-hover:scale-110 transition-transform duration-300"
+            >
+              <span
+                class="material-symbols-outlined text-5xl"
+                data-icon="person_add"
+                >person_add</span
+              >
+            </div>
+            <h3 class="text-3xl font-bold tracking-tight text-primary">
+              Client Registration
+            </h3>
+            <p class="text-secondary mt-4 max-w-xs">
+              Onboard high-net-worth individuals and partners.
+            </p>
+          </a>
+          <!-- Action 3: New Staff Onboarding -->
+          <a
+            class="group bg-surface-container-lowest p-12 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-slate-100 rounded-xl"
+            href="../staffReg/index.html"
+          >
+            <div
+              class="mb-6 h-20 w-20 flex items-center justify-center rounded-2xl bg-slate-50 text-primary group-hover:scale-110 transition-transform duration-300"
+            >
+              <span class="material-symbols-outlined text-5xl" data-icon="badge"
+                >badge</span
+              >
+            </div>
+            <h3 class="text-3xl font-bold tracking-tight text-primary">
+              New Staff Onboarding
+            </h3>
+            <p class="text-secondary mt-4 max-w-xs">
+              Configure internal access and consultant roles.
+            </p>
+          </a>
+          <!-- Action 4: Branch Appointments -->
+          <a
+            class="group bg-surface-container-lowest p-12 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border border-slate-100 rounded-xl"
+            href="../appointmentDash/index.html"
+          >
+            <div
+              class="mb-6 h-20 w-20 flex items-center justify-center rounded-2xl bg-slate-50 text-primary group-hover:scale-110 transition-transform duration-300"
+            >
+              <span
+                class="material-symbols-outlined text-5xl"
+                data-icon="calendar_month"
+                >calendar_month</span
+              >
+            </div>
+            <h3 class="text-3xl font-bold tracking-tight text-primary">
+              Branch Appointments
+            </h3>
+            <p class="text-secondary mt-4 max-w-xs">
+              Manage active schedules and meeting logistics.
+            </p>
+          </a>
+        </div>
+      </div>
+    </main>
+    <!-- Contextual FAB -->
+    <button
+      class="fixed bottom-8 right-8 bg-primary text-on-primary h-14 w-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50"
+    >
+      <span class="material-symbols-outlined" data-icon="add">add</span>
+    </button>
+  </body>
+</html>

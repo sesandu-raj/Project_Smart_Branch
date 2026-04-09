@@ -1,0 +1,592 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Branch Portal | The Sovereign Path</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "tertiary-fixed-dim": "#4edea3",
+              secondary: "#505f76",
+              background: "#faf8ff",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-panel {
+        backdrop-filter: blur(20px);
+        background: rgba(250, 248, 255, 0.8);
+      }
+      .nav-active {
+        color: #059669 !important;
+        font-weight: 700;
+        border-right: 2px solid #059669;
+        background: #ecfdf5;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface min-h-screen font-body antialiased"
+  >
+    <div
+      id="login-overlay"
+      class="fixed inset-0 z-[100] flex items-center justify-center bg-black p-6"
+    >
+      <div class="absolute inset-0 overflow-hidden opacity-30">
+        <img
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070"
+          class="w-full h-full object-cover grayscale"
+          alt="Architecture"
+        />
+      </div>
+      <div
+        class="w-full max-w-md bg-white p-10 rounded-2xl relative z-10 shadow-2xl"
+      >
+        <div class="text-center mb-10">
+          <span
+            class="text-xs font-bold tracking-[0.3em] text-emerald-600 uppercase font-headline"
+            >The Sovereign Path</span
+          >
+          <h2
+            class="text-3xl font-extrabold font-headline mt-4 tracking-tighter"
+          >
+            Branch Access
+          </h2>
+          <p class="text-secondary text-sm mt-2">
+            Enter credentials to synchronize with the vault.
+          </p>
+        </div>
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label
+              class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-2"
+              >Branch Email</label
+            >
+            <input
+              id="login-email"
+              type="email"
+              required
+              class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:border-emerald-500 focus:ring-0 transition-all outline-none"
+              placeholder="branch@pb.com"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-2"
+              >Access Key</label
+            >
+            <input
+              id="login-password"
+              type="password"
+              required
+              class="w-full px-0 py-3 bg-transparent border-b-2 border-slate-200 focus:border-emerald-500 focus:ring-0 transition-all outline-none"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="pt-4">
+            <button
+              type="submit"
+              class="w-full bg-black text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-slate-900 transition-all shadow-xl"
+            >
+              Authorize Session
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <header
+      class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+    >
+      <div class="flex justify-between items-center px-8 py-3">
+        <div class="flex items-center gap-8">
+          <span
+            class="text-lg font-bold tracking-tighter uppercase font-headline"
+            >The Sovereign Path</span
+          >
+          <nav class="hidden md:flex gap-6">
+            <button
+              onclick="showView('dashboard')"
+              class="text-slate-500 hover:text-black text-sm transition-colors font-medium"
+            >
+              Dashboard
+            </button>
+            <button
+              onclick="showView('appointments')"
+              class="text-slate-500 hover:text-black text-sm transition-colors font-medium"
+            >
+              Appointments
+            </button>
+            <button
+              onclick="showView('staff')"
+              class="text-slate-500 hover:text-black text-sm transition-colors font-medium"
+            >
+              Staff
+            </button>
+          </nav>
+        </div>
+        <div class="flex items-center gap-4">
+          <div
+            id="branch-badge"
+            class="hidden px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full"
+          >
+            SECURE CONNECTION
+          </div>
+          <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+            <img
+              src="https://ui-avatars.com/api/?name=Branch+Manager&background=random"
+              alt="Manager"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="flex">
+      <aside
+        class="fixed left-0 top-0 h-full w-64 bg-slate-50 pt-20 hidden md:flex flex-col border-r border-slate-100"
+      >
+        <div class="px-8 py-6 mb-4">
+          <h2 class="text-xl font-black font-headline uppercase text-slate-900">
+            Staff Portal
+          </h2>
+          <p
+            class="text-[10px] font-bold text-emerald-600 tracking-widest uppercase mt-1"
+          >
+            Branch Module
+          </p>
+        </div>
+        <nav class="flex-1 flex flex-col">
+          <button
+            id="nav-dash"
+            onclick="showView('dashboard')"
+            class="nav-active flex items-center gap-3 px-8 py-4 text-sm font-medium transition-all"
+          >
+            <span class="material-symbols-outlined">dashboard</span> Dashboard
+          </button>
+          <button
+            id="nav-appt"
+            onclick="showView('appointments')"
+            class="flex items-center gap-3 px-8 py-4 text-slate-500 hover:bg-slate-100 text-sm font-medium transition-all"
+          >
+            <span class="material-symbols-outlined">calendar_month</span>
+            Appointments
+          </button>
+          <button
+            id="nav-staff"
+            onclick="showView('staff')"
+            class="flex items-center gap-3 px-8 py-4 text-slate-500 hover:bg-slate-100 text-sm font-medium transition-all"
+          >
+            <span class="material-symbols-outlined">group</span> Staff
+          </button>
+        </nav>
+        <div class="p-6 border-t border-slate-100">
+          <button
+            onclick="location.reload()"
+            class="w-full flex items-center justify-center gap-2 text-slate-500 hover:text-red-600 text-sm font-bold uppercase tracking-widest"
+          >
+            <span class="material-symbols-outlined text-sm">logout</span> Logout
+          </button>
+        </div>
+      </aside>
+
+      <main class="flex-1 md:ml-64 pt-24 px-8 pb-12">
+        <div id="view-dashboard" class="grid grid-cols-12 gap-8">
+          <div class="col-span-12">
+            <span
+              id="display-branch-code"
+              class="text-xs font-bold text-secondary uppercase tracking-[0.2em] mb-2 block"
+              >---</span
+            >
+            <h1
+              id="display-branch-name"
+              class="text-4xl font-extrabold tracking-tighter font-headline text-slate-900"
+            >
+              Branch Dashboard
+            </h1>
+            <p
+              id="welcome-greet"
+              class="text-secondary mt-2 max-w-2xl font-body"
+            >
+              Please authenticate to access branch records.
+            </p>
+          </div>
+
+          <div
+            class="col-span-12 lg:col-span-4 bg-slate-900 text-white rounded-2xl p-8 flex flex-col justify-between shadow-xl"
+          >
+            <div>
+              <span
+                class="material-symbols-outlined text-emerald-400 mb-4"
+                style="font-size: 32px"
+                >analytics</span
+              >
+              <h3 class="text-lg font-bold font-headline">Unit Capacity</h3>
+            </div>
+            <div class="mt-8">
+              <div
+                id="active-load-count"
+                class="text-6xl font-black font-headline tracking-tighter"
+              >
+                0
+              </div>
+              <p
+                class="text-xs font-bold text-emerald-400 uppercase tracking-widest mt-2"
+              >
+                Active Appointments
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="col-span-12 lg:col-span-8 bg-white border border-slate-100 rounded-2xl p-8 flex items-center justify-between"
+          >
+            <div>
+              <h3 class="text-xl font-bold font-headline">System Integrity</h3>
+              <p class="text-sm text-secondary mt-2 max-w-md">
+                The branch portal is now synced with central operations. All
+                client sessions are encrypted.
+              </p>
+              <div class="mt-6 flex gap-3">
+                <span
+                  class="px-3 py-1 bg-slate-100 text-[10px] font-bold rounded-full"
+                  >FIREBASE LIVE</span
+                >
+                <span
+                  class="px-3 py-1 bg-emerald-50 text-emerald-700 text-[10px] font-bold rounded-full"
+                  >ENCRYPTED</span
+                >
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-slate-100 hidden sm:block"
+              style="font-size: 120px"
+              >shield</span
+            >
+          </div>
+        </div>
+
+        <div id="view-appointments" class="hidden">
+          <div class="mb-8">
+            <h2
+              class="text-3xl font-extrabold font-headline tracking-tight text-slate-900"
+            >
+              Available Appointments
+            </h2>
+            <p class="text-secondary text-sm">
+              Real-time schedule for this branch unit.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden"
+          >
+            <table class="w-full text-left">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Client Name
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Service Type
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Date
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Time
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                id="appointments-table-body"
+                class="divide-y divide-slate-50 text-sm"
+              >
+                <tr>
+                  <td
+                    colspan="5"
+                    class="px-6 py-20 text-center text-slate-400 italic"
+                  >
+                    No data synchronized yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="view-staff" class="hidden">
+          <div class="mb-8">
+            <h2
+              class="text-3xl font-extrabold font-headline tracking-tight text-slate-900"
+            >
+              Branch Staff
+            </h2>
+            <p class="text-secondary text-sm">
+              Team members currently assigned to this unit.
+            </p>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden"
+          >
+            <table class="w-full text-left">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Staff Member
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Staff ID
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary"
+                  >
+                    Branch Code
+                  </th>
+                  <th
+                    class="px-6 py-4 text-[10px] font-bold uppercase text-secondary text-right"
+                  >
+                    Access Level
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                id="staff-table-body"
+                class="divide-y divide-slate-50 text-sm"
+              >
+                <tr>
+                  <td
+                    colspan="4"
+                    class="px-6 py-20 text-center text-slate-400 italic"
+                  >
+                    Authenticate to view team.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBQSGl_cGg_RBqIbIep_cWZMXD_yh8uDSo",
+        authDomain: "smart-branch-fd1d8.firebaseapp.com",
+        projectId: "smart-branch-fd1d8",
+        storageBucket: "smart-branch-fd1d8.firebasestorage.app",
+        messagingSenderId: "958934015523",
+        appId: "1:958934015523:web:2b0e69e0a65738bb809b96",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      let currentBranchCode = "";
+
+      function showView(viewName) {
+        const views = {
+          dashboard: document.getElementById("view-dashboard"),
+          appointments: document.getElementById("view-appointments"),
+          staff: document.getElementById("view-staff"),
+        };
+        const navs = {
+          dashboard: document.getElementById("nav-dash"),
+          appointments: document.getElementById("nav-appt"),
+          staff: document.getElementById("nav-staff"),
+        };
+
+        // Toggle visibility and nav styles
+        Object.keys(views).forEach((v) => {
+          if (v === viewName) {
+            views[v].classList.remove("hidden");
+            navs[v].classList.add("nav-active");
+          } else {
+            views[v].classList.add("hidden");
+            navs[v].classList.remove("nav-active");
+          }
+        });
+
+        // Trigger fetch if branch is authenticated
+        if (currentBranchCode) {
+          if (viewName === "appointments") fetchAppointments(currentBranchCode);
+          if (viewName === "staff") fetchStaff(currentBranchCode);
+        }
+      }
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const btn = e.target.querySelector("button");
+          const email = document.getElementById("login-email").value;
+          const password = document.getElementById("login-password").value;
+
+          btn.innerText = "AUTHENTICATING...";
+
+          try {
+            const branchSnapshot = await db
+              .collection("Branches")
+              .where("branch_Email", "==", email)
+              .where("branch_Password", "==", password)
+              .get();
+
+            if (branchSnapshot.empty) {
+              alert("Access Denied: Invalid Credentials.");
+              btn.innerText = "AUTHORIZE SESSION";
+              return;
+            }
+
+            const data = branchSnapshot.docs[0].data();
+            currentBranchCode = data.branch_Code;
+
+            document.getElementById("login-overlay").classList.add("hidden");
+            document.getElementById("branch-badge").classList.remove("hidden");
+
+            document.getElementById("display-branch-name").innerText =
+              data.branch_Name;
+            document.getElementById("display-branch-code").innerText =
+              "UNIT ID: " + data.branch_Code;
+            document.getElementById("welcome-greet").innerText =
+              `Welcome back, ${data.branch_Manager}. Managed Unit: ${data.branch_Address}.`;
+
+            fetchAppointments(currentBranchCode);
+          } catch (error) {
+            alert("Vault Connection Error: " + error.message);
+            btn.innerText = "AUTHORIZE SESSION";
+          }
+        });
+
+      async function fetchAppointments(code) {
+        const table = document.getElementById("appointments-table-body");
+        table.innerHTML =
+          '<tr><td colspan="5" class="p-10 text-center animate-pulse">Syncing schedule...</td></tr>';
+        try {
+          const snapshot = await db
+            .collection("Appointments")
+            .where("Branch_Code", "==", code)
+            .get();
+          table.innerHTML = "";
+          document.getElementById("active-load-count").innerText =
+            snapshot.size;
+
+          if (snapshot.empty) {
+            table.innerHTML =
+              '<tr><td colspan="5" class="p-10 text-center text-slate-400 italic">No bookings found.</td></tr>';
+            return;
+          }
+          snapshot.forEach((doc) => {
+            const appt = doc.data();
+            const [datePart, timePart] = (appt.Time_Slot || "").split("T");
+            table.insertAdjacentHTML(
+              "beforeend",
+              `
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-5 font-bold text-slate-900">${appt.customer_Name || appt.User_ID || "N/A"}</td>
+                            <td class="px-6 py-5 text-slate-600">${appt.Service_Type || "Conslt."}</td>
+                            <td class="px-6 py-5 text-slate-500">${datePart || "-"}</td>
+                            <td class="px-6 py-5 text-slate-500">${timePart || "-"}</td>
+                            <td class="px-6 py-5 text-emerald-700 font-bold uppercase text-[10px]">${appt.Status || "Active"}</td>
+                        </tr>
+                    `,
+            );
+          });
+        } catch (err) {
+          table.innerHTML = `<tr><td colspan="5" class="text-red-500 p-5">${err.message}</td></tr>`;
+        }
+      }
+
+      async function fetchStaff(code) {
+        const table = document.getElementById("staff-table-body");
+        table.innerHTML =
+          '<tr><td colspan="4" class="p-10 text-center animate-pulse">Retrieving team...</td></tr>';
+        try {
+          const snapshot = await db
+            .collection("Staffs")
+            .where("Branch_Code", "==", code)
+            .get();
+          table.innerHTML = "";
+          if (snapshot.empty) {
+            table.innerHTML =
+              '<tr><td colspan="4" class="p-10 text-center text-slate-400 italic">No staff found for this unit.</td></tr>';
+            return;
+          }
+          snapshot.forEach((doc) => {
+            const s = doc.data();
+            table.insertAdjacentHTML(
+              "beforeend",
+              `
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-[10px]">
+                                        ${s.Name ? s.Name[0] : "S"}
+                                    </div>
+                                    <span class="font-bold text-slate-900">${s.Name || "Unknown Staff"}</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-slate-600 font-mono text-xs">${s.Staff_ID || "---"}</td>
+                            <td class="px-6 py-5 text-slate-500">${s.Branch_Code || code}</td>
+                            <td class="px-6 py-5 text-right"><span class="px-2 py-1 bg-slate-100 rounded text-[10px] font-bold">BRANCH STAFF</span></td>
+                        </tr>
+                    `,
+            );
+          });
+        } catch (err) {
+          table.innerHTML = `<tr><td colspan="4" class="text-red-500 p-5">${err.message}</td></tr>`;
+        }
+      }
+    </script>
+  </body>
+</html>
