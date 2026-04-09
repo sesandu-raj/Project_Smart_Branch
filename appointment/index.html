@@ -158,11 +158,66 @@
 
           <section>
             <h2 class="font-headline font-bold text-2xl mb-8">Availability</h2>
-            <input
-              type="datetime-local"
-              id="time-slot"
-              class="w-full p-4 rounded-xl border border-outline-variant bg-surface-container-low"
-            />
+
+            <div class="space-y-6">
+              <!-- Day Selector -->
+              <div>
+                <label class="block text-sm font-semibold text-secondary mb-3"
+                  >Select Working Day</label
+                >
+                <div
+                  class="grid grid-cols-2 md:grid-cols-5 gap-3"
+                  id="day-selector"
+                >
+                  <button
+                    type="button"
+                    data-day="1"
+                    class="day-btn p-3 rounded-lg border-2 border-outline-variant hover:border-emerald-500 hover:bg-emerald-50 transition-all font-semibold text-sm"
+                  >
+                    Monday
+                  </button>
+                  <button
+                    type="button"
+                    data-day="2"
+                    class="day-btn p-3 rounded-lg border-2 border-outline-variant hover:border-emerald-500 hover:bg-emerald-50 transition-all font-semibold text-sm"
+                  >
+                    Tuesday
+                  </button>
+                  <button
+                    type="button"
+                    data-day="3"
+                    class="day-btn p-3 rounded-lg border-2 border-outline-variant hover:border-emerald-500 hover:bg-emerald-50 transition-all font-semibold text-sm"
+                  >
+                    Wednesday
+                  </button>
+                  <button
+                    type="button"
+                    data-day="4"
+                    class="day-btn p-3 rounded-lg border-2 border-outline-variant hover:border-emerald-500 hover:bg-emerald-50 transition-all font-semibold text-sm"
+                  >
+                    Thursday
+                  </button>
+                  <button
+                    type="button"
+                    data-day="5"
+                    class="day-btn p-3 rounded-lg border-2 border-outline-variant hover:border-emerald-500 hover:bg-emerald-50 transition-all font-semibold text-sm"
+                  >
+                    Friday
+                  </button>
+                </div>
+              </div>
+
+              <!-- Time Slots -->
+              <div id="time-slots-container" class="hidden">
+                <label class="block text-sm font-semibold text-secondary mb-3"
+                  >Select Time Slot (Bank Hours: 8:00 AM - 2:52 PM)</label
+                >
+                <div
+                  class="grid grid-cols-2 md:grid-cols-4 gap-3"
+                  id="time-slots-grid"
+                ></div>p
+              </div>
+            </div>
           </section>
         </div>
 
