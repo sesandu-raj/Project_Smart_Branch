@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Branches | The Sovereign Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "on-tertiary-container": "#009668",
+              surface: "#faf8ff",
+              secondary: "#505f76",
+              "outline-variant": "#c6c6cd",
+              "tertiary-fixed-dim": "#4edea3",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-slate-900 min-h-screen">
+    <nav
+      class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+    >
+      <div
+        class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="text-xl font-bold tracking-tighter font-headline text-slate-900"
+        >
+          The Sovereign Path
+        </div>
+        <nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm"
+        >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="services.html"
+            >Services</a
+          >
+          <a
+            class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+            href="branches.html"
+            >Branches</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="rates.html"
+            >Rates</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="profile.html"
+            >My Profile</a
+          >
+        </nav>
+        <button
+          onclick="window.location.href = 'services.html'"
+          class="bg-primary text-white px-6 py-2.5 rounded-xl font-headline font-semibold hover:opacity-80 transition-all active:scale-95"
+        >
+          Book Appointment
+        </button>
+      </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-8 max-w-7xl mx-auto">
+      <header class="mb-16">
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-8"
+        >
+          <div class="max-w-2xl">
+            <span
+              class="text-on-tertiary-container bg-emerald-50 px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-4 inline-block uppercase"
+              >Our Network</span
+            >
+            <h1
+              class="text-5xl md:text-6xl font-headline font-extrabold tracking-tight mb-6"
+            >
+              Find a Sanctuary <br />Near You.
+            </h1>
+            <p class="text-secondary text-lg leading-relaxed">
+              Experience banking in spaces designed for focus, security, and
+              prestige. Locate your nearest private wealth center.
+            </p>
+          </div>
+          <div class="w-full md:w-96">
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                >search</span
+              >
+              <input
+                id="branch-search"
+                class="w-full pl-12 pr-4 py-4 bg-white border-slate-200 focus:border-emerald-500 focus:ring-0 rounded-xl transition-all shadow-sm"
+                placeholder="Search by city or branch name..."
+                type="text"
+              />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="branch-results" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="col-span-full py-20 text-center text-slate-400 italic">
+          Loading our network...
+        </div>
+      </div>
+    </main>
+
+    <footer
+      class="bg-slate-50 border-t border-slate-200 w-full py-12 px-8 mt-20"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="font-headline font-bold text-slate-900 text-lg">
+          The Sovereign Path
+        </div>
+        <p class="text-slate-500 text-xs font-body tracking-widest uppercase">
+          © 2026 The Sovereign Path. Member FDIC.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+      // 1. Firebase Configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBQSGl_cGg_RBqIbIep_cWZMXD_yh8uDSo",
+        authDomain: "smart-branch-fd1d8.firebaseapp.com",
+        projectId: "smart-branch-fd1d8",
+        storageBucket: "smart-branch-fd1d8.firebasestorage.app",
+        messagingSenderId: "958934015523",
+        appId: "1:958934015523:web:2b0e69e0a65738bb809b96",
+        measurementId: "G-DPZ90E14PJ",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+
+      const branchResults = document.getElementById("branch-results");
+      const searchInput = document.getElementById("branch-search");
+
+      async function loadAllBranches() {
+        try {
+          const querySnapshot = await db.collection("Branches").get();
+          branchResults.innerHTML = ""; // Clear loader
+
+          if (querySnapshot.empty) {
+            branchResults.innerHTML = `<div class="col-span-full text-center py-10">No branches found in the network.</div>`;
+            return;
+          }
+
+          querySnapshot.forEach((doc) => {
+            const branch = doc.data();
+            renderBranchCard(branch);
+          });
+        } catch (error) {
+          console.error("Error loading branches:", error);
+          branchResults.innerHTML = `<div class="col-span-full text-center text-red-500 py-10">Failed to connect to the network.</div>`;
+        }
+      }
+
+      function renderBranchCard(branch) {
+        const card = document.createElement("div");
+        // Sovereign Path styling: clean borders, emerald accents on hover
+        card.className =
+          "bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-xl hover:border-emerald-500 transition-all group";
+
+        card.innerHTML = `
+        <div class="flex justify-between items-start mb-8">
+            <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center text-black group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined">account_balance</span>
+            </div>
+            <span class="text-[10px] font-bold tracking-widest text-slate-400 px-3 py-1 border border-slate-100 rounded-full uppercase">
+                ID: ${branch.branch_Code}
+            </span>
+        </div>
+
+        <h3 class="text-2xl font-headline font-bold mb-2 group-hover:text-emerald-600 transition-colors">
+            ${branch.branch_Name}
+        </h3>
+        
+        <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+            Official branch outlet for personalized banking services and private consultations.
+        </p>
+
+        <div class="space-y-4 pt-6 border-t border-slate-50">
+            <div class="flex items-center gap-3 text-sm text-slate-600">
+                <span class="material-symbols-outlined text-emerald-500 text-lg">mail</span>
+                <a href="mailto:${branch.branch_Email}" class="hover:text-emerald-600 transition-colors">
+                    ${branch.branch_Email}
+                </a>
+            </div>
+            <div class="flex items-center gap-3 text-sm text-slate-600">
+                <span class="material-symbols-outlined text-slate-400 text-lg">verified_user</span>
+                Verified Sovereign Branch
+            </div>
+        </div>
+
+        <button onclick="selectBranch('${branch.branch_Code}', '${branch.branch_Name}')" 
+                class="w-full mt-8 py-4 bg-slate-50 group-hover:bg-black group-hover:text-white rounded-xl font-bold text-sm transition-all active:scale-95">
+            Book Appointment
+        </button>
+    `;
+        branchResults.appendChild(card);
+      }
+
+      // Helper for booking
+      function selectBranch(code, name) {
+        localStorage.setItem("selectedBranchCode", code);
+        localStorage.setItem("selectedBranchName", name);
+        alert(`Selected ${name}. Redirecting to appointment scheduler...`);
+        // window.location.href = "../appointment/index.html";
+      }
+      // Simple Search Filter
+      searchInput.addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        const cards = document.querySelectorAll("#branch-results > div");
+        cards.forEach((card) => {
+          const name = card.querySelector("h3").innerText.toLowerCase();
+          card.style.display = name.includes(term) ? "block" : "none";
+        });
+      });
+
+      // Run on load
+      window.addEventListener("DOMContentLoaded", loadAllBranches);
+    </script>
+  </body>
+</html>

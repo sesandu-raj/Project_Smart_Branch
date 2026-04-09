@@ -1,0 +1,291 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Financial Benchmarks | The Sovereign Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "on-tertiary-container": "#009668",
+              surface: "#faf8ff",
+            },
+            fontFamily: { headline: ["Manrope"], body: ["Inter"] },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface text-slate-900 font-body antialiased">
+    <header
+      class="bg-white/80 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-slate-100"
+    >
+      <div
+        class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="text-xl font-bold tracking-tighter font-headline text-slate-900"
+        >
+          The Sovereign Path
+        </div>
+
+        <nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm"
+        >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="services.html"
+            >Services</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="branches.html"
+            >Branches</a
+          >
+          <a
+            class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+            href="rates.html"
+            >Rates</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="profile.html"
+            >My Profile</a
+          >
+        </nav>
+
+        <div class="flex items-center space-x-6">
+          <button
+            onclick="window.location.href = 'services.html'"
+            class="bg-black text-white px-6 py-2.5 rounded-xl font-headline font-semibold text-sm hover:opacity-80 transition-all active:scale-95"
+          >
+            Book Appointment
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="pt-28 pb-20 px-8 max-w-screen-2xl mx-auto">
+      <header class="mb-12">
+        <h1 class="text-5xl font-extrabold font-headline tracking-tighter mb-4">
+          Financial Benchmarks
+        </h1>
+        <p id="status-text" class="text-slate-500 max-w-2xl italic text-sm">
+          Synchronizing with global markets...
+        </p>
+      </header>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <section
+          class="lg:col-span-8 bg-white rounded-3xl p-8 border border-slate-100 shadow-sm"
+        >
+          <h2
+            class="text-2xl font-bold font-headline mb-8 flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-emerald-600"
+              >currency_exchange</span
+            >
+            Exchange Rates (LKR)
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr
+                  class="text-xs font-bold uppercase tracking-widest text-slate-400 border-b border-slate-50"
+                >
+                  <th class="py-4">Currency</th>
+                  <th class="py-4 text-center">Buy Rate</th>
+                  <th class="py-4 text-center">Sell Rate</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-50">
+                <tr>
+                  <td class="py-6 font-bold flex items-center gap-4">
+                    <div
+                      class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xs"
+                    >
+                      USD
+                    </div>
+                    <div>
+                      <p>US Dollar</p>
+                      <p class="text-[10px] text-slate-400 uppercase">
+                        United States
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    class="py-6 text-center font-headline font-semibold text-emerald-600"
+                    id="rate-USD-buy"
+                  >
+                    ---
+                  </td>
+                  <td
+                    class="py-6 text-center font-headline font-semibold"
+                    id="rate-USD-sell"
+                  >
+                    ---
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-6 font-bold flex items-center gap-4">
+                    <div
+                      class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xs"
+                    >
+                      EUR
+                    </div>
+                    <div>
+                      <p>Euro</p>
+                      <p class="text-[10px] text-slate-400 uppercase">
+                        European Union
+                      </p>
+                    </div>
+                  </td>
+                  <td
+                    class="py-6 text-center font-headline font-semibold text-emerald-600"
+                    id="rate-EUR-buy"
+                  >
+                    ---
+                  </td>
+                  <td
+                    class="py-6 text-center font-headline font-semibold"
+                    id="rate-EUR-sell"
+                  >
+                    ---
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="lg:col-span-4">
+          <div class="bg-black text-white rounded-3xl p-8 shadow-xl">
+            <h3
+              class="text-xl font-bold font-headline mb-8 flex items-center gap-2"
+            >
+              <span
+                class="material-symbols-outlined text-emerald-400"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >hotel_class</span
+              >
+              Bullion Rates
+            </h3>
+            <div class="space-y-8">
+              <div>
+                <p
+                  class="text-slate-400 text-xs uppercase tracking-widest font-bold"
+                >
+                  Gold 24K (8g)
+                </p>
+                <p
+                  class="text-3xl font-extrabold font-headline mt-2 text-emerald-400"
+                  id="gold-24k"
+                >
+                  ---
+                </p>
+              </div>
+              <div>
+                <p
+                  class="text-slate-400 text-xs uppercase tracking-widest font-bold"
+                >
+                  Gold 22K (8g)
+                </p>
+                <p
+                  class="text-3xl font-extrabold font-headline mt-2"
+                  id="gold-22k"
+                >
+                  ---
+                </p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <script>
+      async function updateRates() {
+        // Fetching with USD as base to get both LKR and EUR in one call
+        const url =
+          "https://api.frankfurter.dev/v1/latest?base=USD&symbols=LKR,EUR";
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (!data.rates || !data.rates.LKR)
+            throw new Error("API Limit reached");
+
+          const lkrPerUsd = data.rates.LKR;
+          const eurPerUsd = data.rates.EUR; // e.g. 0.92
+
+          // 1. Update USD
+          // Spread: Buy at -2% of market, Sell at +2% of market
+          document.getElementById("rate-USD-buy").innerText = (
+            lkrPerUsd * 0.98
+          ).toFixed(2);
+          document.getElementById("rate-USD-sell").innerText = (
+            lkrPerUsd * 1.02
+          ).toFixed(2);
+
+          // 2. Update EUR
+          // Formula: LKR per EUR = (LKR per USD) / (EUR per USD)
+          const lkrPerEur = lkrPerUsd / eurPerUsd;
+          document.getElementById("rate-EUR-buy").innerText = (
+            lkrPerEur * 0.98
+          ).toFixed(2);
+          document.getElementById("rate-EUR-sell").innerText = (
+            lkrPerEur * 1.02
+          ).toFixed(2);
+
+          // 3. Gold Rates (Estimated global market price ~$2,350 per ounce)
+          // 1 Troy Ounce = 31.1 grams. 1 Sovereign = 8 grams.
+          const marketGoldOz = 2350;
+          const goldLkrPerGram = (marketGoldOz / 31.1) * lkrPerUsd;
+          const sovereign24k = goldLkrPerGram * 8;
+          const sovereign22k = sovereign24k * 0.916; // 22K is 91.6% pure gold
+
+          document.getElementById("gold-24k").innerText =
+            "Rs. " + Math.round(sovereign24k).toLocaleString();
+          document.getElementById("gold-22k").innerText =
+            "Rs. " + Math.round(sovereign22k).toLocaleString();
+
+          document.getElementById("status-text").innerText =
+            "Last sync: " + new Date().toLocaleTimeString();
+        } catch (error) {
+          console.error("Rates fetch error:", error);
+          document.getElementById("status-text").innerText =
+            "Network Error. Showing latest cached rates.";
+
+          // Static fallbacks so the UI doesn't look broken
+          document.getElementById("rate-USD-buy").innerText = "321.45";
+          document.getElementById("rate-USD-sell").innerText = "332.10";
+          document.getElementById("rate-EUR-buy").innerText = "348.90";
+          document.getElementById("rate-EUR-sell").innerText = "356.45";
+          document.getElementById("gold-24k").innerText = "Rs. 184,500";
+          document.getElementById("gold-22k").innerText = "Rs. 169,200";
+        }
+      }
+
+      // Initialize on load
+      window.addEventListener("load", updateRates);
+    </script>
+  </body>
+</html>

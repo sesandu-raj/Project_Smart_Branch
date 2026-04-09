@@ -1,0 +1,428 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Services | The Sovereign Path</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#000000",
+              "on-tertiary-container": "#009668",
+              surface: "#faf8ff",
+              secondary: "#505f76",
+              "outline-variant": "#c6c6cd",
+              "surface-container-low": "#f2f3ff",
+              "surface-container-highest": "#dae2fd",
+            },
+            fontFamily: {
+              headline: ["Manrope"],
+              body: ["Inter"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-headline {
+        font-family: "Manrope", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .service-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-slate-900">
+    <header
+      class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100"
+    >
+      <div
+        class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="text-xl font-bold tracking-tighter text-slate-900 font-headline"
+        >
+          The Sovereign Path
+        </div>
+        <nav
+          class="hidden md:flex items-center space-x-8 font-semibold text-sm"
+        >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="text-emerald-600 border-b-2 border-emerald-600 pb-1 transition-all"
+            href="services.html"
+            >Services</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="branches.html"
+            >Branches</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="rates.html"
+            >Rates</a
+          >
+          <a
+            class="text-slate-500 hover:text-black transition-all"
+            href="profile.html"
+            >My Profile</a
+          >
+        </nav>
+        <button
+          onclick="window.location.href = 'services.html'"
+          class="bg-primary text-white px-6 py-2.5 rounded-xl font-headline font-semibold text-sm hover:opacity-80 transition-all active:scale-95"
+        >
+          Book Appointment
+        </button>
+      </div>
+    </header>
+
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto">
+      <div class="mb-20">
+        <h1
+          class="text-6xl font-headline font-extrabold tracking-tight max-w-3xl mb-6"
+        >
+          Tailored Financial <span class="text-emerald-600">Excellence</span>.
+        </h1>
+        <p class="text-secondary text-xl max-w-2xl font-light leading-relaxed">
+          Experience architectural precision in banking. Select a service to
+          view requirements and schedule your private consultation.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div
+          onclick="selectService('Savings Account Opening')"
+          class="service-card md:col-span-8 bg-white rounded-[2rem] p-10 border border-slate-100 shadow-sm relative overflow-hidden group hover:border-emerald-500"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full -mr-20 -mt-20 blur-3xl"
+          ></div>
+          <div class="relative z-10">
+            <span
+              class="material-symbols-outlined text-emerald-600 mb-4 text-4xl"
+              >account_balance_wallet</span
+            >
+            <h3 class="text-3xl font-headline font-bold mb-3">
+              Savings Account Opening
+            </h3>
+            <p class="text-secondary mb-8 max-w-lg">
+              Build your foundation with our premier savings products. Designed
+              for sustainable growth and absolute liquidity.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <span
+                  class="text-[10px] uppercase tracking-widest text-slate-400 font-bold block mb-3"
+                  >Required Documents</span
+                >
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li class="flex items-center gap-2">
+                    <span
+                      class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
+                    ></span>
+                    Valid NIC / Passport
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <span
+                      class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
+                    ></span>
+                    Proof of Address
+                  </li>
+                </ul>
+              </div>
+              <div class="flex flex-col justify-end items-end">
+                <button
+                  class="w-full bg-black text-white py-4 rounded-xl font-headline font-bold group-hover:bg-emerald-600 transition-colors"
+                >
+                  Schedule Opening
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          onclick="selectService('Fixed Deposit')"
+          class="service-card md:col-span-4 bg-slate-50 rounded-[2rem] p-10 flex flex-col justify-between border border-transparent hover:border-emerald-500"
+        >
+          <div>
+            <span class="material-symbols-outlined text-black mb-4 text-4xl"
+              >lock_clock</span
+            >
+            <h3 class="text-2xl font-headline font-bold mb-3">Fixed Deposit</h3>
+            <p class="text-slate-500 text-sm mb-6">
+              Secure guaranteed returns with our industry-leading interest
+              rates.
+            </p>
+          </div>
+          <a
+            class="text-emerald-600 text-sm font-bold flex items-center gap-2 group-hover:translate-x-1 transition-transform"
+            href="#"
+          >
+            View Rates
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+
+        <div
+          onclick="selectService('Corporate Loans')"
+          class="service-card md:col-span-6 bg-slate-900 text-white rounded-[2rem] p-10 relative overflow-hidden group"
+        >
+          <div class="relative z-10">
+            <span
+              class="material-symbols-outlined text-emerald-400 mb-4 text-4xl"
+              >domain</span
+            >
+            <h3 class="text-2xl font-headline font-bold mb-3">
+              Corporate Loans & Overdrafts
+            </h3>
+            <p class="text-slate-400 text-sm mb-6">
+              Scalable capital solutions for large-scale operations and working
+              capital requirements.
+            </p>
+            <button
+              class="bg-emerald-600 text-white px-6 py-2 rounded-lg text-xs font-bold uppercase tracking-widest"
+            >
+              Inquire Facility
+            </button>
+          </div>
+        </div>
+
+        <div
+          onclick="selectService('Trade Finance')"
+          class="service-card md:col-span-6 bg-white rounded-[2rem] p-10 border border-slate-100 shadow-sm hover:border-emerald-500 group"
+        >
+          <span class="material-symbols-outlined text-emerald-600 mb-4 text-4xl"
+            >shippping</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">Trade Finance</h3>
+          <p class="text-secondary text-sm mb-4">
+            Letter of Credit (LC) and Bank Guarantees to facilitate your global
+            commerce.
+          </p>
+          <div class="flex gap-2">
+            <span class="px-2 py-1 bg-slate-100 text-[9px] font-bold rounded"
+              >IMPORT/EXPORT</span
+            >
+            <span class="px-2 py-1 bg-slate-100 text-[9px] font-bold rounded"
+              >GUARANTEES</span
+            >
+          </div>
+        </div>
+
+        <div
+          onclick="selectService('Business Current Account')"
+          class="service-card md:col-span-12 bg-emerald-50 rounded-[2rem] p-10 border border-emerald-100 hover:border-emerald-500 flex flex-col md:flex-row justify-between items-center gap-8"
+        >
+          <div class="max-w-xl">
+            <span
+              class="inline-block px-3 py-1 bg-emerald-600 text-white text-[10px] font-bold rounded-full mb-4"
+              >ENTERPRISE SOLUTIONS</span
+            >
+            <h3 class="text-3xl font-headline font-bold mb-3 text-emerald-950">
+              Business Current Account
+            </h3>
+            <p class="text-emerald-800/70">
+              Engineered for high-volume transactions with integrated digital
+              banking and customized limits.
+            </p>
+          </div>
+          <button
+            class="bg-emerald-950 text-white px-10 py-4 rounded-xl font-bold shadow-lg"
+          >
+            Open Business Account
+          </button>
+        </div>
+
+        <div
+          onclick="selectService('Personal Loan')"
+          class="service-card md:col-span-4 bg-slate-50 rounded-[2rem] p-10 border border-transparent hover:border-emerald-500"
+        >
+          <span class="material-symbols-outlined text-black mb-4 text-4xl"
+            >payments</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">Personal Loan</h3>
+          <p class="text-slate-500 text-sm mb-6">
+            Empower your ambitions with competitive rates and rapid approval.
+          </p>
+          <button
+            class="w-full border border-slate-200 py-3 rounded-xl text-sm font-bold hover:bg-white transition-colors"
+          >
+            Apply Now
+          </button>
+        </div>
+
+        <div
+          onclick="selectService('Housing Loan')"
+          class="service-card md:col-span-4 bg-black text-white rounded-[2rem] p-10 relative overflow-hidden"
+        >
+          <div class="absolute bottom-0 right-0 opacity-10 translate-y-4">
+            <span class="material-symbols-outlined text-9xl">home_work</span>
+          </div>
+          <div class="relative z-10 flex flex-col justify-between h-full">
+            <h3 class="text-2xl font-headline font-bold mb-3">Housing Loan</h3>
+            <p class="text-slate-400 text-sm mb-8">
+              Architect your future with mortgage solutions tailored to your
+              dreams.
+            </p>
+            <span
+              class="bg-emerald-600 text-white text-center py-3 rounded-xl text-xs font-bold uppercase tracking-widest"
+              >Book Expert</span
+            >
+          </div>
+        </div>
+
+        <div
+          onclick="selectService('Payroll Management')"
+          class="service-card md:col-span-4 bg-white rounded-[2rem] p-10 border border-slate-100 hover:border-emerald-500 shadow-sm"
+        >
+          <span class="material-symbols-outlined text-emerald-600 mb-4 text-4xl"
+            >groups</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">
+            Payroll Services
+          </h3>
+          <p class="text-slate-500 text-sm mb-6">
+            Automate your organization's salary disbursements and tax compliance
+            effortlessly.
+          </p>
+          <span class="text-[10px] font-bold text-emerald-600 uppercase"
+            >Seamless Integration</span
+          >
+        </div>
+
+        <div
+          onclick="selectService('Foreign Exchange')"
+          class="service-card md:col-span-4 bg-slate-50 rounded-[2rem] p-10 border border-transparent hover:border-emerald-500"
+        >
+          <span class="material-symbols-outlined text-black mb-4 text-4xl"
+            >currency_exchange</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">
+            Foreign Exchange
+          </h3>
+          <p class="text-slate-500 text-sm mb-6">
+            Real-time currency conversion with competitive spreads for 20+
+            global currencies.
+          </p>
+        </div>
+
+        <div
+          onclick="selectService('Asset Financing')"
+          class="service-card md:col-span-4 bg-white rounded-[2rem] p-10 border border-slate-100 hover:border-emerald-500 shadow-sm"
+        >
+          <span class="material-symbols-outlined text-emerald-600 mb-4 text-4xl"
+            >precision_manufacturing</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">
+            Leasing & Financing
+          </h3>
+          <p class="text-slate-500 text-sm mb-6">
+            Acquire machinery, vehicles, or equipment with flexible repayment
+            structures.
+          </p>
+        </div>
+
+        <div
+          onclick="selectService('Merchant Services')"
+          class="service-card md:col-span-4 bg-emerald-600 text-white rounded-[2rem] p-10 hover:bg-emerald-700 transition-colors"
+        >
+          <span class="material-symbols-outlined mb-4 text-4xl"
+            >point_of_sale</span
+          >
+          <h3 class="text-2xl font-headline font-bold mb-3">
+            Merchant Services
+          </h3>
+          <p class="text-emerald-50 text-sm mb-6">
+            Secure payment gateways and POS solutions to power your physical and
+            digital storefronts.
+          </p>
+        </div>
+
+        <div
+          onclick="selectService('Pawning (Gold Loan)')"
+          class="service-card md:col-span-12 bg-white rounded-[2rem] p-10 border border-slate-100 hover:border-emerald-500 shadow-sm flex flex-col md:flex-row justify-between items-center gap-8"
+        >
+          <div>
+            <span
+              class="material-symbols-outlined text-emerald-600 mb-4 text-4xl"
+              >workspace_premium</span
+            >
+            <h3 class="text-2xl font-headline font-bold mb-3">Gold Loan</h3>
+            <p class="text-slate-500">
+              Unlock value with our confidential, high-valuation pawning
+              services. Instant processing guaranteed.
+            </p>
+          </div>
+          <div
+            class="text-[10px] font-bold text-slate-400 uppercase tracking-tighter px-6 py-2 border-2 border-slate-100 rounded-full"
+          >
+            Secure Vault Storageing
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-50 border-t border-slate-200 py-12 px-8 mt-20">
+      <div
+        class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="font-headline font-bold text-slate-900 text-lg">
+          The Sovereign Path
+        </div>
+        <p class="text-slate-500 text-xs tracking-widest uppercase">
+          © 2026 The Sovereign Path. Member FDIC.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      /**
+       * Captures the service name and saves it to localStorage
+       * before navigating to the appointment page.
+       */
+      function selectService(serviceName) {
+        // Log for debugging
+        console.log("Selected Service:", serviceName);
+
+        // Save to localStorage (consistent with your app.js logic)
+        localStorage.setItem("selectedService", serviceName);
+
+        // Redirect to appointment folder using a relative path
+        window.location.href = "../appointment/index.html";
+      }
+    </script>
+  </body>
+</html>
