@@ -41,9 +41,6 @@ A modern web-based banking solution that allows customers to interact with bank 
 - Choose:
   - Branch (dropdown from DB)
   - Time Slot
-  - Required Documents
-
-- Upload documents (PDF/Image)
 
 ### 📂 File Upload System
 
@@ -68,7 +65,6 @@ A modern web-based banking solution that allows customers to interact with bank 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend (BaaS):** Firebase
   - Firestore (Database)
-  - Firebase Storage (File Uploads)
 
 ---
 
