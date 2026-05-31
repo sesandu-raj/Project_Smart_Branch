@@ -512,11 +512,13 @@
         const table = document.getElementById("appointments-table-body");
         table.innerHTML =
           '<tr><td colspan="5" class="p-10 text-center animate-pulse">Syncing schedule...</td></tr>';
+
         try {
           const snapshot = await db
             .collection("Appointments")
             .where("Branch_Code", "==", code)
             .get();
+
           table.innerHTML = "";
           document.getElementById("active-load-count").innerText =
             snapshot.size;
@@ -526,25 +528,82 @@
               '<tr><td colspan="5" class="p-10 text-center text-slate-400 italic">No bookings found.</td></tr>';
             return;
           }
-          snapshot.forEach((doc) => {
+
+          // Process each appointment
+          for (const doc of snapshot.docs) {
             const appt = doc.data();
+            const apptId = doc.id;
+
+            // Step 1: Fetch User details using User_ID from the Users collection
+            let customerName = "Loading...";
+            let customerNIC = "N/A";
+            let customerPhone = "N/A";
+
+            try {
+              const userSnapshot = await db
+                .collection("Users")
+                .where("User_ID", "==", appt.User_ID)
+                .get();
+
+              if (!userSnapshot.empty) {
+                const userData = userSnapshot.docs[0].data();
+                customerName = userData.Name;
+                customerNIC = userData.NIC;
+                customerPhone = userData.Email; // Using email as contact if phone isn't available
+              } else {
+                customerName = "Guest User (" + appt.User_ID + ")";
+              }
+            } catch (e) {
+              customerName = "Error fetching name";
+            }
+
             const [datePart, timePart] = (appt.Time_Slot || "").split("T");
-            table.insertAdjacentHTML(
-              "beforeend",
-              `
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="px-6 py-5 font-bold text-slate-900">${appt.customer_Name || appt.User_ID || "N/A"}</td>
-                            <td class="px-6 py-5 text-slate-600">${appt.Service_Type || "Conslt."}</td>
-                            <td class="px-6 py-5 text-slate-500">${datePart || "-"}</td>
-                            <td class="px-6 py-5 text-slate-500">${timePart || "-"}</td>
-                            <td class="px-6 py-5 text-emerald-700 font-bold uppercase text-[10px]">${appt.Status || "Active"}</td>
-                        </tr>
-                    `,
-            );
-          });
+
+            // Step 2: Create the UI Rows
+            const rowHtml = `
+        <tr onclick="toggleDetails('${apptId}')" class="hover:bg-emerald-50 cursor-pointer transition-colors border-l-4 border-transparent hover:border-emerald-500">
+            <td class="px-6 py-5 font-bold text-slate-900">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+                    ${customerName}
+                </div>
+            </td>
+            <td class="px-6 py-5 text-slate-600">${appt.Service_Type || "Consultation"}</td>
+            <td class="px-6 py-5 text-slate-500">${datePart || "-"}</td>
+            <td class="px-6 py-5 text-slate-500">${timePart || "-"}</td>
+            <td class="px-6 py-5">
+                <span class="px-2 py-1 bg-emerald-100 text-emerald-800 rounded text-[10px] font-bold uppercase">${appt.Status || "Submitted"}</span>
+            </td>
+        </tr>
+        <tr id="details-${apptId}" class="hidden bg-slate-50">
+            <td colspan="5" class="px-12 py-6">
+                <div class="grid grid-cols-2 gap-8 border-l-2 border-emerald-500 pl-6">
+                    <div>
+                        <h4 class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-2">Customer Profile</h4>
+                        <p class="text-sm"><strong>Full Name:</strong> ${customerName}</p>
+                        <p class="text-sm"><strong>NIC Number:</strong> ${customerNIC}</p>
+                        <p class="text-sm"><strong>Contact:</strong> ${customerPhone}</p>
+                    </div>
+                    <div>
+                        <h4 class="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-2">Appointment Assets</h4>
+                        <p class="text-sm"><strong>Required Docs:</strong> ${appt.Documents || "None listed"}</p>
+                        <p class="text-sm"><strong>System ID:</strong> ${appt.User_ID}</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+      `;
+            table.insertAdjacentHTML("beforeend", rowHtml);
+          }
         } catch (err) {
           table.innerHTML = `<tr><td colspan="5" class="text-red-500 p-5">${err.message}</td></tr>`;
         }
+      }
+
+      // Helper function to toggle the dropdown
+      function toggleDetails(id) {
+        const detailRow = document.getElementById(`details-${id}`);
+        detailRow.classList.toggle("hidden");
       }
 
       async function fetchStaff(code) {
